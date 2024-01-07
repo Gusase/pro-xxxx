@@ -102,7 +102,7 @@
                         title="{{ $file->original_filename }}">{{ $file->original_filename }}</span>
                 </a>
                 <button data-dropdown-toggle="file-#{{ $file->id_file }}" data-modal-byclick
-                    class="inline-block rounded-full ml-1 -mr-1 p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    class="inline-block rounded-full ml-1 h-max mt-0.5 -mr-0.5 p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     type="button">
                     <span class="sr-only">Open dropdown</span>
                     <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -248,13 +248,13 @@
                                     message</label>
                                 <textarea rows="2"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    placeholder="From {{ Auth::user()->username }}..." required name="pesan"
+                                    placeholder="From {{ Auth::user()->username }}..." name="pesan"
                                     id="pesan"></textarea>
                             </div>
                         </div>
                         <div class="flex flex-col items-center border-t border-gray-200 rounded-b mt-2">
-                            <x-partial.primary-button onclick="process('send')" id="sendFile" disabled
-                                class="!w-full text-white bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            <x-partial.primary-button onclick="process(event)" id="sendFile" disabled
+                                class="!w-full text-white bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 font-medium rounded-lg focus:ring-offset-2 text-sm px-5 py-2.5 text-center">
                                 Send
                             </x-partial.primary-button>
                             <x-partial.secondary-button class="justify-center w-full text-center mt-2"
@@ -431,6 +431,5 @@
 
     @push('script')
     <script src="{{ asset('js/buffer.js') }}"></script>
-    <script src="{{ asset('js/form.js') }}"></script>
     @endpush
 </x-user>

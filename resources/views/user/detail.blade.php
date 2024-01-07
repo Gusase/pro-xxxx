@@ -39,7 +39,7 @@
                 <div class="min-w-0">
                     <img src="{{ $user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $user->pp) }}"
                         loading="lazy" decoding="async" alt="{{ $user->username }}"
-                        class="w-20 p-1 object-cover aspect-square border-2 border-gray-300 rounded-full sm:block sm:w-[8.3rem] sm:h-[8.3rem]">
+                        class="w-24 p-1 object-cover aspect-square border-2 border-gray-300 rounded-full sm:block sm:w-[8.3rem] sm:h-[8.3rem]">
                 </div>
                 <div
                     class="w-full flex items-center sm:text-left text-center sm:items-start justify-center gap-y-3 flex-col flex-1 sm:mt-2 z-10 md:gap-y-2.5">
@@ -68,8 +68,9 @@
                     @endif
                 </div>
             </div>
+            @unless ($user->files->isEmpty())
             <div
-                class="p-4 lg:w-auto mt-8 sm:w-full max-w-xl sm:mt-12 md:mt-0 relative md:before:hidden md:after:hidden before:absolute after:absolute before:bg-gray-200 after:bg-gray-200/70 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
+                class="p-4 hidden md:block lg:w-auto mt-8 sm:w-full max-w-xl sm:mt-12 md:mt-0 relative md:before:hidden md:after:hidden before:absolute after:absolute before:bg-gray-200 after:bg-gray-200/70 before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px">
                 <div class="flex items-center max-md:justify-around w-full max-md:gap-x-3">
                     <div
                         class="text-center sm:py-5 sm:pl-8 sm:pr-7 rounded-lg max-md:ring-1 max-md:ring-gray-50/30 w-full p-4 relative before:hidden after:hidden md:before:block md:after:block before:absolute after:absolute before:bg-white after:bg-white/30 before:left-0 before:top-0 before:h-6 before:w-px after:bottom-0 after:left-0 after:top-8 after:w-px">
@@ -112,6 +113,7 @@
                     </div>
                 </div>
             </div>
+            @endunless
         </div>
     </section>
 

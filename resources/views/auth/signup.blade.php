@@ -51,7 +51,7 @@
                             :error="$errors->get('password_confirmation')" />
                     </div>
 
-                    <x-partial.primary-button onclick="process('register')">
+                    <x-partial.primary-button onclick="process(event)">
                         Register account
                     </x-partial.primary-button>
 

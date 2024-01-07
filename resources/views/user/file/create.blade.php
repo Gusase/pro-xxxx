@@ -155,7 +155,7 @@
 
             <div class="mt-6 flex items-center justify-start gap-x-4">
                 <div class="!w-max -mt-6">
-                    <x-partial.primary-button onclick="process('add')">
+                    <x-partial.primary-button onclick="process(event)">
                         add
                     </x-partial.primary-button>
                 </div>
@@ -168,7 +168,6 @@
 
     @push('script')
     <script src="{{ asset('js/filedrop.js') }}"></script>
-    <script src="{{ asset('js/form.js') }}"></script>
     @endpush
 
 </x-user>

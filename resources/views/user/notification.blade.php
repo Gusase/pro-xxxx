@@ -25,19 +25,19 @@
               <img class="w-8 sm:w-14 aspect-square rounded-full object-cover"
                 src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
                 alt="{{ $p->id_pengirim }}">
-              <div class="leading-1 5 flex flex-col basis-full">
+              <div class="leading-1 5 flex flex-col basis-full w-full min-w-0">
                 <a href=""
-                  class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{
+                  class="text-[0.85rem] truncate w-full font-normal decoration-2 underline-offset-2 hover:underline hover:decoration-gray-700 duration-150 p-0.5 pb-0">{{
                   $p->user->username }}</a>
                 <span title="{{ $p->created_at }}" class="text-xs text-gray-700">
-                  {{ $p->created_at->diffForHumans() }}
+                  {{ $p->created_at->diffForHumans() == '1 month ago' ? $p->created_at->format('d M Y') : $p->created_at->diffForHumans() }}
                 </span>
               </div>
             </div>
             <p class="text-sm font-normal my-2.5 text-gray-900 sm:px-2">{{ $p->pesan }}</p>
             <a href="{{ route('file.share.detail',[$p->user->username ,$p->id_file]) }}"
               title="Filename: {{ $p->file->original_filename }}"
-              class="flex overflow-hidden items-start relative isolate before:absolute before:inset-0 before:-z-10 before:block before:origin-bottom-right before:scale-x-0 before:bg-gradient-to-r before:from-gray-200 before:transition-transform hover:before:origin-bottom-left hover:before:scale-x-100 before:rounded-xl ring-1 group-hover:ring-gray-900/30 ring-gray-900/10 rounded-xl p-2 duration-150 transition-shadow hover:!ring-gray-900">
+              class="flex overflow-hidden items-start relative hover:bg-gray-200/30 before:rounded-xl ring-1 group-hover:ring-gray-900/30 ring-gray-900/10 rounded-xl p-2 duration-150 transition-shadow hover:!ring-gray-900">
               <div class="me-2">
                 <span class="flex items-center gap-2 text-sm font-medium text-gray-900 pb-2 font-poppins line-clamp-2">
                   {{ $p->file->original_filename }}

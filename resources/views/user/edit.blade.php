@@ -71,7 +71,7 @@
 
             <div class="mt-6 flex items-center justify-start gap-x-4">
                 <div class="!w-max -mt-6">
-                    <x-partial.primary-button onclick="process('save')">
+                    <x-partial.primary-button onclick="process(event)">
                         Save
                     </x-partial.primary-button>
                 </div>
@@ -83,7 +83,6 @@
     </div>
 
     @push('script')
-<script src="{{ asset('js/form.js') }}"></script>
     <script>
         function openFile() {
                 document.getElementById('pp').click();
