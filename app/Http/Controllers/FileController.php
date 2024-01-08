@@ -255,16 +255,15 @@ class FileController extends Controller
 
     public function fileDetail($username, $id_file)
     {
-        dd($username);
         $data['jumlahPesan'] = $this->getJumlahPesan();
         $pesan = $this->getPesan();
         $groupedPesan = $pesan->groupBy('id_pengirim');
         $data['pesan'] = $pesan;
         $data['pesanGrup'] = $groupedPesan->all();
 
-        $data['file'] = File::where('id_file', $id_file)->where('id_file', $id_file)->where('id_user', '=', function (\Illuminate\Database\Query\Builder $query) use ($username) {
-            return $query->select('id_user')->from('users')->where('username', $username)->get();
-        })->first(['original_filename', 'generate_filename', 'judul_file', 'status', 'mime_type', 'id_file', 'file_size', 'deskripsi', 'created_at', 'id_user', 'ekstensi_file']);
+        $data['file'] = File::with('user:id_user,fullname,username,pp')->where('id_file', $id_file)->where('id_file', $id_file)->where('id_user', '=', fn (\Illuminate\Database\Query\Builder $query) =>
+            $query->select('id_user')->from('users')->where('username', $username)->get()
+        )->first(['original_filename', 'generate_filename', 'judul_file', 'status', 'mime_type', 'id_file', 'file_size', 'deskripsi', 'created_at', 'id_user', 'ekstensi_file']);
 
 
         // kalau file ga ada atau statusnya private
@@ -275,7 +274,6 @@ class FileController extends Controller
         if ($data['file']->id_user != Auth::id() && $data['file']->status != 'public') {
             return $this->fail('dashboard', "File $username ($id_file) not found");
         }
-
         return view('user.file.detalPublik', $data);
     }
 
@@ -292,10 +290,9 @@ class FileController extends Controller
             ->join('pesans AS p', 'f.id_file', '=', 'p.id_file')
             ->where('p.id_file', '=', $id_file)
             ->where('p.id_penerima', '=', $this->getUserId())
-            ->where('p.id_pengirim', '=', function (\Illuminate\Database\Query\Builder $query) use ($username) {
-                return $query->select('id_user')->from('users')->where('username', $username)->get();
-            })
-            ->first(['p.pesan', 'f.original_filename', 'f.generate_filename', 'f.judul_file', 'f.status', 'f.mime_type', 'f.ekstensi_file', 'f.id_file', 'u.fullname', 'f.file_size', 'f.deskripsi', 'f.created_at']);
+            ->where('p.id_pengirim', '=', fn (\Illuminate\Database\Query\Builder $query) =>
+            $query->select('id_user')->from('users')->where('username', $username)->get())
+            ->first(['p.pesan', 'f.original_filename', 'f.generate_filename', 'f.judul_file', 'f.status', 'f.mime_type', 'f.ekstensi_file', 'f.id_file', 'u.fullname', 'u.pp', 'f.file_size', 'f.deskripsi', 'f.created_at']);
 
         if (!$shareFile) {
             return $this->fail('dashboard', "File not found");
