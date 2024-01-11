@@ -31,7 +31,7 @@
               <x-partial.form.input id="password" type="password" name="password" :error="$errors->get('password')" />
             </div>
 
-            <x-partial.primary-button onclick="process('login')">
+            <x-partial.primary-button onclick="process(event)">
               Login
             </x-partial.primary-button>
           </form>

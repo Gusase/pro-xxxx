@@ -35,8 +35,7 @@
             <div class="w-full pe-2 text-sm font-medium">
                 {!! $msg !!}
             </div>
-            {{-- <div class="inline-block h-100 w-0.5 self-stretch bg-gray-300 opacity-100"></div> --}}
-            <button type="button" autofocus class="mt-1 inline-flex aspect-square h-10 w-10 items-center justify-center rounded-md text-white outline-none ring-1 ring-gray-300 duration-150 focus-within:ring-2 hover:ring-2 focus:ring-2" data-dismiss-target="#atomic-alert-1" aria-label="Close">
+            <button type="button" autofocus class="inline-flex aspect-square h-8 w-8 items-center justify-center rounded-md text-white outline-none ring-1 ring-gray-300 duration-150 focus-within:ring-2 hover:ring-2 focus:ring-2" data-dismiss-target="#atomic-alert-1" aria-label="Close">
                 <span class="sr-only">Close</span>
                 <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 16">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>

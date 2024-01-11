@@ -1,3 +1,25 @@
+function process(event) {
+  const btn = event.target;
+
+  btn.innerHTML = `
+      <svg class="motion-safe:animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      `;
+}
+
+/**
+ * Slash key listener ,to focus inputs
+ */
+document.addEventListener("keydown", (event) => {
+  if (event.key === "/" && event.code === "Slash") {
+    event.preventDefault();
+    // var globalForm = document.getElementById("global-search");
+    document.getElementById("global-search").focus();
+  }
+});
+
 /**
  * dari nanamnya taulah
  */
@@ -50,7 +72,7 @@ const form = document.querySelector("#formShareFile");
 const dropdown = document.querySelector(`#dropdown`);
 const downlaod = document.querySelector("#download");
 const edit = document.querySelector(`#edit`);
-const fileShareName = form.querySelector(".fileshrnm");
+const fileShareName = form && form.querySelector(".fileshrnm");
 let countResult;
 let visibleDropdown = null;
 let id_file;
@@ -141,11 +163,12 @@ cards.forEach((c) => {
 /**
  * Nyalin link lewar klik kanan button
  */
-bSalin.addEventListener("click", () => {
-  const link = document.querySelector(`#link[data-id_file="${id_file}"]`);
-  navigator.clipboard.writeText(link.value);
-  alert(`Link file #${id_file} berhasil disalin!`);
-});
+bSalin &&
+  bSalin.addEventListener("click", () => {
+    const link = document.querySelector(`#link[data-id_file="${id_file}"]`);
+    navigator.clipboard.writeText(link.value);
+    alert(`Link file #${id_file} berhasil disalin!`);
+  });
 
 /**
  * Hide Modal Notif
@@ -206,18 +229,20 @@ buttonShowModalShare.forEach((b) => {
  * Kalau pas search nama user klik diluar elemnt daftar nama user
  */
 const areaResultUser = document.querySelector("#result");
-document.addEventListener("click", function (event) {
-  // Periksa apakah klik dilakukan di luar elemen result
-  if (!areaResultUser.contains(event.target)) {
-    // Jika ya, tambahkan class hidden pada elemen result
-    areaResultUser.classList.add("hidden");
-  }
-});
+areaResultUser &&
+  document.addEventListener("click", function (event) {
+    // Periksa apakah klik dilakukan di luar elemen result
+    if (!areaResultUser.contains(event.target)) {
+      // Jika ya, tambahkan class hidden pada elemen result
+      areaResultUser.classList.add("hidden");
+    }
+  });
 // Event listener untuk menampilkan kembali elemen result jika diklik
-areaResultUser.addEventListener("click", function (event) {
-  // Hapus class hidden saat elemen result diklik
-  areaResultUser.classList.remove("hidden");
-});
+areaResultUser &&
+  areaResultUser.addEventListener("click", function (event) {
+    // Hapus class hidden saat elemen result diklik
+    areaResultUser.classList.remove("hidden");
+  });
 
 /**
  * Deklarasi variable
@@ -231,94 +256,96 @@ const btnSendFile = document.querySelector("#sendFile");
 let clicked = false;
 let username;
 
-textAreaPesan.addEventListener("focus", () => {
-  result.classList.add("hidden");
-  searchUser.classList.add("rounded-lg");
-  searchUser.classList.remove("rounded-t-lg");
-});
-
-searchUser.addEventListener("input", () => {
-  let valueSearch = searchUser.value.trim();
-  if (valueSearch != "") {
-    result.innerHTML = "<span class='block px-4 py-2'>Loading...</span>";
-    const { userPromise } = fetch(`/username?q=${valueSearch}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((dataUsers) => {
-        const users = dataUsers.dataUsers;
-        result.innerHTML = "";
-        searchUser.addEventListener("keyup", function () {
-          clicked = false;
-          btnSendFile.disabled = true;
-        });
-
-        if (users.length == 0) {
-          searchUser.classList.add("rounded-lg");
-          searchUser.classList.remove("rounded-t-lg");
-          result.classList.add("hidden");
-          notfon.textContent = `User '${valueSearch}' tidak ada!`;
-          notfon.classList.remove("hidden");
-          notfon.classList.add("block");
-          btnSendFile.disabled = true;
-        } else {
-          searchUser.classList.remove("rounded-lg");
-          searchUser.classList.add("rounded-t-lg");
-          result.classList.remove("hidden");
-          result.classList.add("block");
-          notfon.classList.remove("block");
-          notfon.classList.add("hidden");
-        }
-
-        users.forEach((user) => {
-          const li = document.createElement("li");
-          li.textContent = user.username;
-          li.classList.add(
-            "userLi",
-            "block",
-            "px-4",
-            "py-2",
-            "hover:bg-gray-100"
-          );
-          li.setAttribute("role", "button");
-          result.appendChild(li);
-
-          let liUser = document.querySelectorAll(".userLi");
-          liUser.forEach((uli) => {
-            uli.addEventListener("click", () => {
-              searchUser.value = uli.innerText;
-              result.innerHTML = "";
-              countResult = null;
-              clicked = true;
-
-              if (clicked) {
-                searchUser.classList.add("rounded-lg");
-                searchUser.classList.remove("rounded-t-lg");
-                result.classList.add("hidden");
-                btnSendFile.disabled = false;
-              } else {
-                btnSendFile.disabled = true;
-              }
-            });
-          });
-        });
-      })
-      .catch((error) => {
-        console.error(`Error: ${error.message}`);
-      });
-  } else {
+textAreaPesan &&
+  textAreaPesan.addEventListener("focus", () => {
+    result.classList.add("hidden");
     searchUser.classList.add("rounded-lg");
     searchUser.classList.remove("rounded-t-lg");
-    notfon.classList.add("hidden");
-    notfon.classList.remove("block");
-    result.classList.add("hidden");
-    result.classList.remove("block");
-    result.innerHTML = "";
-    btnSendFile.disabled = true;
-  }
-});
+  });
+
+searchUser &&
+  searchUser.addEventListener("input", () => {
+    let valueSearch = searchUser.value.trim();
+    if (valueSearch != "") {
+      result.innerHTML = "<span class='block px-4 py-2'>Loading...</span>";
+      const { userPromise } = fetch(`/username?q=${valueSearch}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((dataUsers) => {
+          const users = dataUsers.dataUsers;
+          result.innerHTML = "";
+          searchUser.addEventListener("keyup", function () {
+            clicked = false;
+            btnSendFile.disabled = true;
+          });
+
+          if (users.length == 0) {
+            searchUser.classList.add("rounded-lg");
+            searchUser.classList.remove("rounded-t-lg");
+            result.classList.add("hidden");
+            notfon.textContent = `User '${valueSearch}' tidak ada!`;
+            notfon.classList.remove("hidden");
+            notfon.classList.add("block");
+            btnSendFile.disabled = true;
+          } else {
+            searchUser.classList.remove("rounded-lg");
+            searchUser.classList.add("rounded-t-lg");
+            result.classList.remove("hidden");
+            result.classList.add("block");
+            notfon.classList.remove("block");
+            notfon.classList.add("hidden");
+          }
+
+          users.forEach((user) => {
+            const li = document.createElement("li");
+            li.textContent = user.username;
+            li.classList.add(
+              "userLi",
+              "block",
+              "px-4",
+              "py-2",
+              "hover:bg-gray-100"
+            );
+            li.setAttribute("role", "button");
+            result.appendChild(li);
+
+            let liUser = document.querySelectorAll(".userLi");
+            liUser.forEach((uli) => {
+              uli.addEventListener("click", () => {
+                searchUser.value = uli.innerText;
+                result.innerHTML = "";
+                countResult = null;
+                clicked = true;
+
+                if (clicked) {
+                  searchUser.classList.add("rounded-lg");
+                  searchUser.classList.remove("rounded-t-lg");
+                  result.classList.add("hidden");
+                  btnSendFile.disabled = false;
+                } else {
+                  btnSendFile.disabled = true;
+                }
+              });
+            });
+          });
+        })
+        .catch((error) => {
+          console.error(`Error: ${error.message}`);
+        });
+    } else {
+      searchUser.classList.add("rounded-lg");
+      searchUser.classList.remove("rounded-t-lg");
+      notfon.classList.add("hidden");
+      notfon.classList.remove("block");
+      result.classList.add("hidden");
+      result.classList.remove("block");
+      result.innerHTML = "";
+      btnSendFile.disabled = true;
+    }
+  });

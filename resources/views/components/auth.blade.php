@@ -31,7 +31,7 @@
 
 
   <!-- Additional Script -->
-  <script src="{{ asset('js/form.js') }}"></script>
+  <script src="{{ asset('js/script.js') }}"></script>
 
   <!-- CDN Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>

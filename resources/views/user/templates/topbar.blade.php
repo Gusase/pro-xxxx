@@ -92,8 +92,10 @@
                 @endif
             </div>
         </div>
-        <button role="button" class="inline-flex min-w-0 items-center hover:ring-2 duration-150 hover:ring-gray-200 focus:ring-2 focus:ring-gray-200 rounded-full ring-offset-2" aria-expanded="false"
-            data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" data-popover-trigger="click">
+        <button role="button"
+            class="inline-flex min-w-0 items-center hover:ring-2 duration-150 hover:ring-gray-200 focus:ring-2 focus:ring-gray-200 rounded-full ring-offset-2"
+            aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom"
+            data-popover-trigger="click">
             <img class="rounded-full object-cover w-8 h-8"
                 src="{{ Auth::user()->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . Auth::user()->pp) }}">
         </button>
@@ -169,10 +171,10 @@
                 </svg>
                 <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to
                     log out?</h3>
-                <form action="/signout" method="get" class="inline-block mr-1" id="formLogout">
+                <form action="/signout" method="get" class="inline-block mr-1">
                     <div class="!w-max">
-                        <x-partial.primary-button onclick="process('logout')" data-logout=""
-                            class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <x-partial.primary-button onclick="process(event)"
+                            class="text-white bg-red-700 !mt-0 hover:bg-red-800 focus:ring-2 focus:ring-offset-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center">
                             Log out
                         </x-partial.primary-button>
                     </div>
@@ -298,7 +300,7 @@
     </div>
 </div>
 
-@push('script')
+{{-- @push('script')
 <script>
     /**
          * Slash key listener ,to focus inputs
@@ -311,4 +313,4 @@
         }
         });
 </script>
-@endpush
+@endpush --}}

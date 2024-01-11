@@ -1,6 +1,7 @@
 <x-user :$title :$jumlahPesan :$pesan :$files :$pesanGrup>
 
-    <x-partial.flash class="!my-2 absolute min-w-[18rem] top-20 right-10 z-10 shadow-md" :flash="session()->all()" />
+    <x-partial.flash class="!mt-1 mb-4
+    " :flash="session()->all()" />
 
     <x-section-heading class="mb-3 mt-5 pl-4">
         <h3 class="text-2xl sm:text-3xl font-medium font-mona">Discover all files</h3>
@@ -89,13 +90,13 @@
                                 class="break-all text-sm antialiased font-medium tracking-normal text-inherit line-clamp-1 w-fit isolate relative font-mona no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">
                                 {{ $file->user->fullname }}</a>
                             <p
-                                class="block font-poppins text-xs antialiased font-light leading-normal text-gray-500 -mt-px w-[95%] lg:max-w-full truncate">
-                                {{ $file->user->username }}
+                                class="block font-poppins text-xs antialiased font-light leading-normal text-gray-500 -mt-px" title="{{ $file->created_at }}">
+                                {{ $file->created_at->diffForHumans() == '1 month ago' ? $file->created_at->format('d M Y') : $file->created_at->diffForHumans() }}
                             </p>
                         </div>
                     </div>
                     <button id="dropdw" data-dropdown-toggle="file-#{{ $file->id_file }}"
-                        class="inline-block rounded-full ml-1 -mr-1 p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                        class="inline-block rounded-full ml-1 -mr-0.5 h-fit p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                         type="button">
                         <span class="sr-only">Open dropdown</span>
                         <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -138,7 +139,6 @@
     </div>
 
     @push('script')
-    <script src="{{ asset('js/form.js') }}"></script>
     <script src="{{ asset('js/buffer.js') }}"></script>
     @endpush
 </x-user>
