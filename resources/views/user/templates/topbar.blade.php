@@ -1,6 +1,6 @@
 <div class="flex flex-wrap items-center gap-5 md:gap-0 md:justify-between mx-auto p-5 md:px-5 px-0 pt-3 w-full">
-    <button role="button" data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
-        aria-controls="logo-sidebar" type="button"
+    <button role="button" data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+        type="button"
         class="inline-flex group items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-200/80 focus:outline-none focus:ring-2 focus:ring-gray-200">
         <span class="sr-only">Open sidebar</span>
         <svg class="w-6 h-6 group-hover:text-black" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -37,19 +37,18 @@
     <div
         class="lg:flex gap-2 md:gap-7 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse hidden min-w-[10rem] w-0 justify-end">
         @unless (request()->routeIs('notification'))
-        <button role="button" type="button"
-            class="relative grid place-items-center text-sm rounded-full w-5 h-5 md:me-0 focus:ring-2 focus:ring-gray-300"
-            id="dropdownDefaultButton" data-dropdown-toggle="notif">
-            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
-                <path
-                    d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
-            </svg>
-            @unless ($jumlahPesan == 0)
-            <span
-                class="absolute inline-flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">{{
-                $jumlahPesan }}</span>
-            @endunless
-        </button>
+            <button role="button" type="button"
+                class="relative grid place-items-center text-sm rounded-full w-5 h-5 md:me-0 focus:ring-2 focus:ring-gray-300"
+                id="dropdownDefaultButton" data-dropdown-toggle="notif">
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                    <path
+                        d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                </svg>
+                @unless ($jumlahPesan == 0)
+                    <span
+                        class="absolute inline-flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">{{ $jumlahPesan }}</span>
+                @endunless
+            </button>
         @endunless
         <div class="z-50 w-72 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
             id="notif">
@@ -58,37 +57,37 @@
             </div>
             <div>
                 @unless (count($pesan))
-                <div class="px-3 py-4">
-                    <div class="text-gray-700 text-center">
-                        <span>No notification yet</span>
+                    <div class="px-3 py-4">
+                        <div class="text-gray-700 text-center">
+                            <span>No notification yet</span>
+                        </div>
                     </div>
-                </div>
                 @endunless
                 @foreach (array_slice($pesan->all(), 0, 4) as $p)
-                <div class="px-3 py-2.5 flex items-center">
-                    <div class="mr-3">
-                        <div class="overflow-hidden">
-                            <img class="w-10 aspect-square rounded-full object-cover"
-                                src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
-                                alt="{{ $p->id_pengirim }}">
+                    <div class="px-3 py-2.5 flex items-center">
+                        <div class="mr-3">
+                            <div class="overflow-hidden">
+                                <img class="w-10 aspect-square rounded-full object-cover"
+                                    src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
+                                    alt="{{ $p->id_pengirim }}">
+                            </div>
+                        </div>
+                        <div>
+                            <div title="{{ $p->created_at }}" class="text-xs text-gray-700">
+                                {{ $p->created_at->format('F d, Y h:i A') }}
+                            </div>
+                            <span class="text-[0.85rem]"><a href="{{ route('profile', $p->user->username) }}"
+                                    class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{ $p->user->username }}</a>
+                                sent you a file! <a
+                                    href="{{ route('file.share.detail', [$p->user->username, $p->id_file]) }}"
+                                    class="text-gray-800 font-medium hover:underline">View file.</a></span>
                         </div>
                     </div>
-                    <div>
-                        <div title="{{ $p->created_at }}" class="text-xs text-gray-700">
-                            {{ $p->created_at->format('F d, Y h:i A') }}
-                        </div>
-                        <span class="text-[0.85rem]"><a href="{{ route('profile',$p->user->username) }}"
-                                class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{
-                                $p->user->username }}</a> sent you a file! <a
-                                href="{{ route('file.share.detail', [$p->user->username, $p->id_file]) }}"
-                                class="text-gray-800 font-medium hover:underline">View file.</a></span>
-                    </div>
-                </div>
                 @endforeach
                 @if (count($pesan) > 4)
-                <a href="{{ route('notification') }}"
-                    class="block py-2 w-full text-xs font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100">See
-                    More Notifications</a>
+                    <a href="{{ route('notification') }}"
+                        class="block py-2 w-full text-xs font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100">See
+                        More Notifications</a>
                 @endif
             </div>
         </div>
@@ -138,7 +137,8 @@
                 <hr class="my-2.5 w-10/12 mx-auto h-px border-0 bg-gray-300">
                 <ul>
                     <li>
-                        <button role="button" data-modal-target="signout" data-modal-toggle="signout" type="button"
+                        <button role="button" data-modal-target="signout" data-modal-toggle="signout"
+                            type="button"
                             class="w-full block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log
                             Out</button>
                     </li>
@@ -164,8 +164,8 @@
                 <span class="sr-only">Close modal</span>
             </button>
             <div class="p-4 md:p-5 text-center">
-                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 20 20">
+                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
@@ -223,10 +223,10 @@
             </div>
         </div>
         @php
-        $ref = match (request()->path()) {
-        'publikFile' => 'publikFile',
-        default => null,
-        };
+            $ref = match (request()->path()) {
+                'publikFile' => 'publikFile',
+                default => null,
+            };
         @endphp
         <div class="mt-2.5">
             <x-partial.create-file :url="$ref" tabindex="-1">
@@ -235,8 +235,8 @@
 
             <div class="block mt-5">
                 <x-partial.tertiary-button href="/" :path="request()->is('/')" tabindex="-1">
-                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 18a.969.969 0 0 1-.933 1H1.933A.97.97 0 0 1 1 18V9l4-4m-4 5h5m3-4h5V1m5 1v12a.97.97 0 0 1-.933 1H9.933A.97.97 0 0 1 9 14V5l4-4h5.067A.97.97 0 0 1 19 2Z" />
                     </svg>
@@ -244,18 +244,17 @@
                 </x-partial.tertiary-button>
 
                 <x-partial.tertiary-button href="/publikFile" :path="request()->is('publikFile')" tabindex="-1">
-                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 21 20">
+                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 21 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <span style="ml-1">Public Files</span>
                 </x-partial.tertiary-button>
 
-                <x-partial.tertiary-button href="{{ route('file.trashed') }}" :path="request()->routeIs('file.trashed')"
-                    tabindex="-1">
-                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 20">
+                <x-partial.tertiary-button href="{{ route('file.trashed') }}" :path="request()->routeIs('file.trashed')" tabindex="-1">
+                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
                     </svg>
@@ -263,20 +262,19 @@
                 </x-partial.tertiary-button>
 
                 @if (Auth::user()->status == 2)
-                <x-partial.tertiary-button href="/a/users" :path="request()->is('a/*')" tabindex="-1">
-                    <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                    </svg>
-                    <span class="ml-1">User Data</span>
-                </x-partial.tertiary-button>
+                    <x-partial.tertiary-button href="/a/users" :path="request()->is('a/*')" tabindex="-1">
+                        <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                        </svg>
+                        <span class="ml-1">User Data</span>
+                    </x-partial.tertiary-button>
                 @endif
             </div>
             <hr class="my-2 h-px bg-gray-200 border-0" />
             <div>
-                <x-partial.tertiary-button href="{{ route('account.settings') }}"
-                    :path="request()->routeIs('account.settings')" tabindex="-1">
+                <x-partial.tertiary-button href="{{ route('account.settings') }}" :path="request()->routeIs('account.settings')" tabindex="-1">
                     <svg class="w-5 h-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -287,8 +285,8 @@
                 </x-partial.tertiary-button>
                 <button role="button" data-modal-target="signout" data-modal-toggle="signout" tabindex="-1"
                     class="flex w-full gap-3 items-center mb-3 px-4 py-2.5 rounded-full {{ request()->routeIs('file.trashed') ? 'bg-gray-300' : 'hover:bg-gray-200' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                        class="w-4 h-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        aria-hidden="true" class="w-4 h-4">
                         <path fill-rule="evenodd"
                             d="M12 2.25a.75.75 0 01.75.75v9a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.166 5.106a.75.75 0 010 1.06 8.25 8.25 0 1011.668 0 .75.75 0 111.06-1.06c3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788a.75.75 0 011.06 0z"
                             clip-rule="evenodd"></path>

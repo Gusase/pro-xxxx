@@ -6,8 +6,8 @@
     <section class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:my-7 2xl:my-0 lg:py-0">
         <div class="w-96">
             <div>
-                <h2 class="mb-8 text-center text-2xl font-bold leading-9 font-semibold tracking-tight text-gray-900">
-                    {{ config('app.name') }} User Registration
+                <h2 class="mb-8 text-center text-2xl font-bold leading-9 font-semibold tracking-tight text-[#004269]">
+                    User Registration
                 </h2>
             </div>
 
@@ -61,7 +61,7 @@
             <div class="sm:mx-auto sm:w-full sm:max-w-sm bg-white rounded-lg shadow-xl p-6 sm:p-5 mt-4">
             <p class="text-sm font-light text-gray-500">
                 Sudah punya akun? <a href="signin"
-                    class="font-semibold leading-6 text-gray-600 decoration-2 underline-offset-2 hover:underline hover:decoration-gray-700">Login
+                    class="font-semibold leading-6 text-[#004269] decoration-2 underline-offset-2 hover:underline hover:decoration-[#004269]">Login
                     here</a>
             </p>
             </div>

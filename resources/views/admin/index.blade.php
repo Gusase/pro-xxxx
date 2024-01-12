@@ -12,8 +12,7 @@
             class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
-                    style="font-variation-settings: &quot;wdth&quot; 125;">{{
-                    $countUsers }}
+                    style="font-variation-settings: &quot;wdth&quot; 125;">{{ $countUsers }}
                 </h2>
             </div>
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Total User</h3>
@@ -22,8 +21,7 @@
             class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
-                    style="font-variation-settings: &quot;wdth&quot; 125;">{{
-                    count($files) }}
+                    style="font-variation-settings: &quot;wdth&quot; 125;">{{ count($files) }}
                 </h2>
             </div>
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Total file</h3>
@@ -32,8 +30,7 @@
             class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
-                    style="font-variation-settings: &quot;wdth&quot; 125;">{{
-                    $verified}}
+                    style="font-variation-settings: &quot;wdth&quot; 125;">{{ $verified }}
                 </h2>
             </div>
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Verified users</h3>
@@ -42,8 +39,7 @@
             class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
-                    style="font-variation-settings: &quot;wdth&quot; 125;">{{
-                    $unverified}}
+                    style="font-variation-settings: &quot;wdth&quot; 125;">{{ $unverified }}
                 </h2>
             </div>
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Unverified users</h3>
@@ -79,55 +75,58 @@
             </thead>
             <tbody>
                 @unless ($countUsers > 0)
-                <tr class="bg-white border-b hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="6">
-                        Tidak ada data user
-                    </th>
-                </tr>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="6">
+                            Tidak ada data user
+                        </th>
+                    </tr>
                 @endunless
                 @foreach ($dataUsers as $index => $user)
-                <tr class="bg-white border-b hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{ $loop->iteration }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $user->fullname }}
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        {{ $user->username }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $user->email }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $user->created_at->diffForHumans() }}
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        @if ($user->status == 0)
-                        <span
-                            class="bg-yellow-100 text-yellow-800 text-sm font-medium px-2.5 py-0.5 rounded">pending</span>
-                        @else
-                        <span
-                            class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded">verified</span>
-                        @endif
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        <button class="font-medium @if ($user->status == 1) text-gray-300 @else text-blue-600
-                            hover:underline @endif verifyA" @if ($user->status == 1) disabled @endif data-user="{{
-                            $user->id_user }}"
-                            data-acc="{{ $user->fullname }}" data-modal-target="verifyAccountModal"
-                            data-modal-show="verifyAccountModal">
-                            Verify
-                        </button>
-                        <a href="{{ route('editUser', $user->id_user) }}"
-                            class="font-medium text-blue-600 hover:underline">Edit</a>
-                        <button class="font-medium text-blue-600 hover:underline deleteA"
-                            data-user="{{ $user->id_user }}" data-acc="{{ $user->fullname }}"
-                            data-modal-target="deleteAccountModal" data-modal-show="deleteAccountModal">
-                            Hapus
-                        </button>
-                    </td>
-                </tr>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $loop->iteration }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ $user->fullname }}
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            {{ $user->username }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->email }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->created_at->diffForHumans() }}
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            @if ($user->status == 0)
+                                <span
+                                    class="bg-yellow-100 text-yellow-800 text-sm font-medium px-2.5 py-0.5 rounded">pending</span>
+                            @else
+                                <span
+                                    class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded">verified</span>
+                            @endif
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <button
+                                class="font-medium @if ($user->status == 1) text-gray-300 @else text-blue-600
+                            hover:underline @endif verifyA"
+                                @if ($user->status == 1) disabled @endif data-user="{{ $user->id_user }}"
+                                data-acc="{{ $user->fullname }}" data-modal-target="verifyAccountModal"
+                                data-modal-show="verifyAccountModal">
+                                Verify
+                            </button>
+                            |
+                            <a href="{{ route('editUser', $user->id_user) }}"
+                                class="font-medium text-blue-600 hover:underline">Edit</a>
+                            |
+                            <button class="font-medium text-blue-600 hover:underline deleteA"
+                                data-user="{{ $user->id_user }}" data-acc="{{ $user->fullname }}"
+                                data-modal-target="deleteAccountModal" data-modal-show="deleteAccountModal">
+                                Hapus
+                            </button>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -218,6 +217,6 @@
     </div>
 
     @push('script')
-    <script src="{{ asset('js/form.js') }}"></script>
+        <script src="{{ asset('js/form.js') }}"></script>
     @endpush
 </x-user>
