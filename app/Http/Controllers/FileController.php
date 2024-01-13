@@ -277,6 +277,18 @@ class FileController extends Controller
         return view('user.file.detalPublik', $data);
     }
 
+    public function downloadRedirect($id_file, $username) {
+        $file = File::where('id_file', $id_file)->first();
+
+        if ($file == null) {
+            return $this->fail('dashboard', "File not found");
+        }
+
+        return redirect()->route('file.share.detail', ['username' => $username, 'id_file' => $file->id_file])
+                    ->with('download', $file->id_file)
+                    ->with('username', $username);
+    }
+
     public function fileShareDetail($username, $id_file)
     {
         $data['jumlahPesan'] = $this->getJumlahPesan();

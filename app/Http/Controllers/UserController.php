@@ -31,21 +31,7 @@ class UserController extends Controller
       $files->where('judul_file', 'like', '%' . request('search') . '%');
     }
     $data['files'] = $files->get();
-    $data['salam'] = $this->greetings('Asia/Jakarta');
     return view('user.index', $data);
-  }
-
-  public function greetings(string $timezone): string
-  {
-    date_default_timezone_set($timezone);
-    $Hour = date('G');
-    if ($Hour >= 0 && $Hour <= 12) {
-      return "Selamat pagi";
-    } else if ($Hour >= 12 && $Hour <= 18) {
-      return "Selamat sore";
-    } else if ($Hour >= 18 || $Hour <= 24) {
-      return "Selamat malam";
-    }
   }
 
   /**

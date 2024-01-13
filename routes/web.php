@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::get('download/{id_file}', 'download')->name('file.download');
         Route::get('d/{id_file}/{filename}', 'downloadByLink');
         Route::get('{username}/file/{id_file}', 'fileDetail')->name('file.detail');
+        Route::get('df/{id_file}/{username}', 'downloadRedirect')->name('download.redirect');
         Route::get('{username}/share/{id_file}', 'fileShareDetail')->name('file.share.detail');
     });
 

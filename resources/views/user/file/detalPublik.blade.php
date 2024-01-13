@@ -40,21 +40,13 @@
                     <span class="font-medium text-sm text-slate-700 font-mono mb-3">Pemilik</span>
                     <span
                         class="flex relative space-x-1 bg-gray-100 items-center overflow-hidden z-0 outline-none w-fit py-1 px-2 rounded-full">
-                        <img src="{{ asset('storage/'. ($file->pp ?? $file->user->pp)) }}"
+                        <img src="{{ $file->pp === 'img/defaultProfile.svg' ? asset($file->pp) : asset('storage/' . $file->pp) }}"
                             class="flex object-cover w-6 h-6 rounded-full" alt="avatar">
                         <span class="tracking-tight text-xs font-medium text-slate-900 mr-px">
                             {{ $file->fullname ?? $file->user->fullname }}
                         </span>
                     </span>
                 </div>
-
-                {{-- <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{
-                    $file->status }}</span>
-                <a href="{{ route('file.download',$file->id_file) }}"
-                    class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="download"><i
-                        class="fa-solid fa-download"></i>
-                    <p>Download</p>
-                </a> --}}
                 @if(!is_null($file->pesan))
                 <div>
                     <span class="font-medium text-sm text-slate-700 font-mono mb-3">Pesan</span>
