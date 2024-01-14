@@ -81,9 +81,6 @@
                                 sent you a file! <a
                                     href="{{ route('download.redirect', [$p->id_file, $p->user->username]) }}"
                                     class="text-gray-800 font-medium hover:underline">View file.</a></span>
-                                    {{-- <a
-                                    href="{{ route('file.share.detail', [$p->user->username, $p->id_file]) }}"
-                                    class="text-gray-800 font-medium hover:underline">View file.</a> --}}
                         </div>
                     </div>
                 @endforeach
@@ -300,18 +297,3 @@
         </div>
     </div>
 </div>
-
-{{-- @push('script')
-<script>
-    /**
-         * Slash key listener ,to focus inputs
-         */
-        document.addEventListener("keydown", (event) => {
-        if (event.key === "/" && event.code === "Slash") {
-            event.preventDefault();
-            // var globalForm = document.getElementById("global-search");
-            document.getElementById("global-search").focus();
-        }
-        });
-</script>
-@endpush --}}

@@ -46,13 +46,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::controller(FileController::class)->group(function () {
-        Route::get('publikFile', 'index');
+        Route::get('publikFile', 'index')->name('dashboardPublik');
         Route::get('/trash', function () {
             return 'trashed file';
         })->name('file.trashed');
         Route::get('/file/new', 'create')->name('new');
         Route::get('download/{id_file}', 'download')->name('file.download');
         Route::get('d/{id_file}/{filename}', 'downloadByLink');
+        Route::get('dp/{id_file}/{filename}', 'downloadByLinkPublik');
         Route::get('{username}/file/{id_file}', 'fileDetail')->name('file.detail');
         Route::get('df/{id_file}/{username}', 'downloadRedirect')->name('download.redirect');
         Route::get('{username}/share/{id_file}', 'fileShareDetail')->name('file.share.detail');

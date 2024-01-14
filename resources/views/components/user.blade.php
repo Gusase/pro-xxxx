@@ -27,13 +27,9 @@
 
 
             <main class="bg-white rounded-2xl h-full overflow-y-auto parent px-1.5 sm:px-4 w-full md:mx-3 lg:ml-0 no-scrollbar">
-                {{-- @yield('salam') --}}
                 {{ $slot }}
             </main>
 
-        </div>
-        <div class="hidden">
-            @include('user.templates.modal')
         </div>
     </div>
 

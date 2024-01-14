@@ -253,6 +253,19 @@ class FileController extends Controller
         return $this->success('dashboard', "File successfully downloaded");
     }
 
+    public function downloadByLinkPublik($id_file, $filename)
+    {
+        $filePathDB = 'users/' . $id_file . '/files/' . $filename;
+        $fileDB = File::where('generate_filename', $filePathDB)->first();
+
+        if ($fileDB == null) {
+            return $this->fail('dashboard', "File not found");
+        }
+
+        session()->flash('download', $fileDB->id_file);
+        return $this->success('dashboardPublik', "File successfully downloaded");
+    }
+    
     public function fileDetail($username, $id_file)
     {
         $data['jumlahPesan'] = $this->getJumlahPesan();
