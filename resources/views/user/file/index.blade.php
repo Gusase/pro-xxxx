@@ -26,20 +26,6 @@
                     <div id="file-#{{ $file->id_file }}"
                         class="z-50 hidden w-44 list-none divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-base shadow font-poppins font-light">
                         <ul lc>
-                            @unless ($file->id_user != Auth::id())
-                                <li>
-                                    <a href="{{ route('file.edit', $file->id_file) }}"
-                                        class="inline-flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100">
-                                        <svg class="mr-2 h-3 w-3 text-gray-800" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                            <path
-                                                d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z" />
-                                            <path
-                                                d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
-                                        </svg>
-                                        Edit</a>
-                                </li>
-                            @endunless
                             <li>
                                 <a href="{{ route('file.download', $file->id_file) }}"
                                     class="inline-flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100"><svg
@@ -61,29 +47,9 @@
                                     </svg>
                                     Share with link</button>
                             </li>
-                            @unless ($file->id_user != Auth::id())
-                                <li>
-                                    <form action="{{ route('file.destroy', $file->id_file) }}" method="post"
-                                        class="w-full">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit"
-                                            class="inline-flex w-full items-center bg-red-500 px-4 py-2 text-left text-sm text-white hover:bg-red-600"
-                                            onclick="return confirm('yakin ingin hapus?')">
-                                            <svg class="mr-2 h-3 w-3 text-gray-800" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                            </svg>
-                                            Hapus</button>
-                                    </form>
-                                </li>
-                            @endunless
                         </ul>
                     </div>
                 </div>
-
                 {{-- Profile user --}}
                 <div class="my-1 px-3 py-1">
                     <div class="flex justify-between">
@@ -114,7 +80,7 @@
                     </div>
                 </div>
 
-                <div title="Filename: {{ $file->original_filename }}">
+                {{-- <div title="Filename: {{ $file->original_filename }}">
                     <div class="mt-px cursor-default">
                         <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->user->username]) }}"
                             class="overflow-hidden h-40 bg-white grid place-items-center relative isolate before:absolute before:inset-0 before:z-10 before:block before:origin-bottom-left before:scale-x-0 before:bg-gradient-to-r before:from-gray-200/25 before:opacity-25 before:transition-all hover:before:origin-top-left hover:before:scale-x-100 hover:before:opacity-100">
@@ -139,7 +105,7 @@
                             {{ $file->original_filename }}
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         @endforeach
     </div>

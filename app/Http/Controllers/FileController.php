@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use App\Http\Requests\StoreFileRequest;
 use App\Http\Requests\UpdateFileRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -28,9 +29,9 @@ class FileController extends Controller
             $files->where('judul_file', 'like', '%' . request('search') . '%');
         }
 
+
         $data['files'] = $files->get();
         $data['title'] = 'Discover';
-
         return view('user.file.index', $data);
     }
 
@@ -273,6 +274,7 @@ class FileController extends Controller
         $groupedPesan = $pesan->groupBy('id_pengirim');
         $data['pesan'] = $pesan;
         $data['pesanGrup'] = $groupedPesan->all();
+        $data['user'] = User::where('username', $username)->first();
 
         $data['file'] = File::with('user:id_user,fullname,username,pp')->where('id_file', $id_file)->where('id_file', $id_file)->where('id_user', '=', fn (\Illuminate\Database\Query\Builder $query) =>
             $query->select('id_user')->from('users')->where('username', $username)->get()
@@ -309,6 +311,7 @@ class FileController extends Controller
         $groupedPesan = $pesan->groupBy('id_pengirim');
         $data['pesan'] = $pesan;
         $data['pesanGrup'] = $groupedPesan->all();
+        $data['user'] = User::where('username', $username)->first();
 
         $shareFile = DB::table('files AS f')
             ->join('users AS u', 'u.id_user', '=', 'f.id_user')

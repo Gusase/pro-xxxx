@@ -40,7 +40,7 @@
                     <span class="font-medium text-sm text-slate-700 font-mono mb-3">Pemilik</span>
                     <span
                         class="flex relative space-x-1 bg-gray-100 items-center overflow-hidden z-0 outline-none w-fit py-1 px-2 rounded-full">
-                        <img src="{{ $file->pp === 'img/defaultProfile.svg' ? asset($file->pp) : asset('storage/' . $file->pp) }}"
+                        <img src="{{ $user->pp === 'img/defaultProfile.svg' ? asset($user->pp) : asset('storage/' . $user->pp) }}"
                             class="flex object-cover w-6 h-6 rounded-full" alt="avatar">
                         <span class="tracking-tight text-xs font-medium text-slate-900 mr-px">
                             {{ $file->fullname ?? $file->user->fullname }}

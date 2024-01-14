@@ -6,7 +6,12 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            mona: 'Mona Sans, ui-serif',
+            poppins: 'Poppins, ui-serif',
+        }
+    }
   },
   plugins: [],
 }
