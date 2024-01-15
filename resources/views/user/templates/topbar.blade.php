@@ -68,7 +68,7 @@
                         <div class="mr-3">
                             <div class="overflow-hidden">
                                 <img class="w-10 aspect-square rounded-full object-cover"
-                                    src="{{ auth()->user()->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . auth()->user()->pp) }}"
+                                    src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
                                     alt="{{ $p->id_pengirim }}">
                             </div>
                         </div>
@@ -76,10 +76,10 @@
                             <div title="{{ $p->created_at }}" class="text-xs text-gray-700">
                                 {{ $p->created_at->format('F d, Y h:i A') }}
                             </div>
-                            <span class="text-[0.85rem]"><a href="{{ route('profile', auth()->user()->username) }}"
-                                    class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{ auth()->user()->username }}</a>
+                            <span class="text-[0.85rem]"><a href="{{ route('profile', $p->user->username) }}"
+                                    class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{ $p->user->username }}</a>
                                 sent you a file! <a
-                                    href="{{ route('download.redirect', [$p->id_file, auth()->user()->username]) }}"
+                                    href="{{ route('download.redirect', [$p->id_file, $p->user->username]) }}"
                                     class="text-gray-800 font-medium hover:underline">View file.</a></span>
                         </div>
                     </div>

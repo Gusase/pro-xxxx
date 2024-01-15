@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Pesan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -55,6 +56,8 @@ class AdminController extends Controller
 
         Storage::deleteDirectory('users/' . $id_user);
         User::destroy($id_user);
+        Pesan::where('id_pengirim', $id_user)->delete();
+        File::where('id_user', $id_user)->delete();
 
         session()->flash('success', 'Successfully deleted user');
         return redirect()->back();

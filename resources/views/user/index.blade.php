@@ -396,16 +396,16 @@
                     <ul class="space-y-4">
                         @foreach ($pesan as $p)
                         <li>
-                            <a href="{{ route('file.share.detail', [auth()->user()->username, $p->id_file]) }}"
+                            <a href="{{ route('file.share.detail', [$p->user->username, $p->id_file]) }}"
                                 class="inline-flex items-center justify-between w-full p-3 px-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer  hover:text-gray-900 hover:bg-gray-100">
                                 <img class="w-10 aspect-square rounded-full object-cover"
-                                    src="{{ auth()->user()->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . auth()->user()->pp) }}"
+                                    src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
                                     alt="{{ $p->id_pengirim }}">
                                 <div class="block">
                                     <div title="{{ $p->created_at }}" class="text-xs text-gray-700">
                                         {{ $p->created_at->format('F d, Y h:iA') }}
                                     </div>
-                                    <span class="text-base"><b>{{ auth()->user()->username }}</b> sent you a file! View
+                                    <span class="text-base"><b>{{ $p->user->username }}</b> sent you a file! View
                                         file.</span>
                                 </div>
                                 <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500"
