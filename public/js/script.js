@@ -264,11 +264,17 @@ textAreaPesan &&
 		searchUser.classList.remove("rounded-t-lg");
 	});
 
+btnSendFile &&
+	btnSendFile.addEventListener("click", () => {
+		btnSendFile.disabled = true;
+	});
+
 searchUser &&
 	searchUser.addEventListener("input", () => {
 		let valueSearch = searchUser.value.trim();
 		if (valueSearch != "") {
-			result.innerHTML = "<span class='block px-4 py-2'>Loading...</span>";
+			result.innerHTML =
+				"<span class='block px-4 py-2'>Fetching users...</span>";
 			const { userPromise } = fetch(`/username?q=${valueSearch}`, {
 				method: "GET",
 				headers: {

@@ -109,7 +109,7 @@
             </div>
 
             <a href="{{ route('file.detail', ['username' => Auth::user()->username, 'id_file' => $file->id_file]) }}"
-                class="overflow-hidden h-40 mt-px cursor-pointer bg-white grid place-items-center relative isolate before:absolute before:inset-0 before:z-10 before:block before:origin-bottom-left before:scale-x-0 before:bg-gradient-to-r before:from-gray-200/25 before:opacity-25 before:transition-all hover:before:origin-top-left hover:before:scale-x-100 hover:before:opacity-100">
+                class="overflow-hidden h-40 mt-px cursor-pointer bg-white grid place-items-center relative">
                 @php
                 $mime = explode('/', $file->mime_type);
                 $extension = $file->ekstensi_file;
@@ -118,7 +118,7 @@
                 <img data-src="{{ asset('storage/' . $file->generate_filename) }}" alt="{{ $file->judul_file }}"
                     class="object-contain h-[inherit]">
                 @else
-                <x-partial.asset.svg :ext="$extension" />
+                <x-asset.svg :ext="$extension" />
                 @endif
             </a>
         </div>
