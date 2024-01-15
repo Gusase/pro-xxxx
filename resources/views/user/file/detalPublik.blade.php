@@ -31,7 +31,7 @@
         </div>
         <div class="mt-10 text-center lg:text-left">
             <div>
-                <p class="text-xl font-semibold text-slate-900">{{ $file->judul_file }}</p>
+                <p class="text-xl font-semibold text-slate-900">{{ $file->generate_filename }}</p>
             </div>
             <div class="space-y-1.5 mt-4">
                 <span class="font-medium text-lg text-slate-700 font-mona mb-3">Detail umum</span>

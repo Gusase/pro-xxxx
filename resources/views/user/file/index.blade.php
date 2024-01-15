@@ -13,6 +13,12 @@
         <h1 class="text-center mx-auto text-gray-400 font-semibold text-4xl">No files yet</h1>
         @endunless
         @foreach ($files as $file)
+        @php
+        $namaFile = explode('/', $file->generate_filename);
+        @endphp
+        <input type="hidden" value="{{ config('app.url') . 'd/' . $file->id_user . '/' . end($namaFile) }}" id="link"
+            data-id_file="{{ $file->id_file }}">
+
         <div
             class="flex w-full max-w-full flex-col bg-gray-100 border border-gray-200 rounded-lg shadow hover:bg-gray-200/20 duration-150 hover:shadow-md pb-2">
             {{-- dropdown menu --}}
@@ -25,36 +31,24 @@
                         <li>
                             <a href="{{ route('file.edit', $file->id_file) }}"
                                 class="inline-flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100">
-                                <svg class="mr-2 h-3 w-3 text-gray-800" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                    <path
-                                        d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z" />
-                                    <path
-                                        d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
-                                </svg>
-                                Edit</a>
+                                <x-asset.svg.edit />
+                                Edit
+                            </a>
                         </li>
                         @endunless
                         <li>
                             <a href="{{ route('file.download', $file->id_file) }}"
-                                class="inline-flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100"><svg
-                                    class="mr-2 h-3 w-3 text-gray-800" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
-                                </svg>Download</a>
+                                class="inline-flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100">
+                                <x-asset.svg.download />
+                                Download
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ $url ?? '#' }}"
+                            <button data-id_file="{{ $file->id_file }}" id="salin"
                                 class="inline-flex items-center w-full whitespace-nowrap px-4 py-2 text-sm hover:bg-gray-100">
-                                <svg class="mr-2 h-3 w-3 text-gray-800" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19 19">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M11.013 7.962a3.519 3.519 0 0 0-4.975 0l-3.554 3.554a3.518 3.518 0 0 0 4.975 4.975l.461-.46m-.461-4.515a3.518 3.518 0 0 0 4.975 0l3.553-3.554a3.518 3.518 0 0 0-4.974-4.975L10.3 3.7" />
-                                </svg>
-                                Share with link</a>
+                                <x-asset.svg.share />
+                                Share with link
+                            </button>
                         </li>
                         @unless ($file->id_user != Auth::id())
                         <li>
@@ -64,13 +58,9 @@
                                 <button type="submit"
                                     class="inline-flex w-full items-center bg-red-500 px-4 py-2 text-left text-sm text-white hover:bg-red-600"
                                     onclick="return confirm('yakin ingin hapus?')">
-                                    <svg class="mr-2 h-3 w-3 text-gray-800" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                    </svg>
-                                    Hapus</button>
+                                    <x-asset.svg.delete />
+                                    Hapus
+                                </button>
                             </form>
                         </li>
                         @endunless
@@ -89,9 +79,10 @@
                             <a href="{{ route('profile', $file->user->username) }}"
                                 class="break-all text-sm antialiased font-medium tracking-normal text-inherit line-clamp-1 w-fit isolate relative font-mona no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">
                                 {{ $file->user->fullname }}</a>
-                            <p
-                                class="block font-poppins text-xs antialiased font-light leading-normal text-gray-500 -mt-px" title="{{ $file->created_at }}">
-                                {{ $file->created_at->diffForHumans() == '1 month ago' ? $file->created_at->format('d M Y') : $file->created_at->diffForHumans() }}
+                            <p class="block font-poppins text-xs antialiased font-light leading-normal text-gray-500 -mt-px"
+                                title="{{ $file->created_at }}">
+                                {{ $file->created_at->diffForHumans() == '1 month ago' ? $file->created_at->format('d M
+                                Y') : $file->created_at->diffForHumans() }}
                             </p>
                         </div>
                     </div>
@@ -111,7 +102,7 @@
             <div title="Filename: {{ $file->original_filename }}">
                 <div class="mt-px cursor-default">
                     <a href="{{ route('file.detail', ['id_file' => $file->id_file,'username' => $file->user->username]) }}"
-                        class="overflow-hidden h-40 bg-white grid place-items-center relative isolate before:absolute before:inset-0 before:z-10 before:block before:origin-bottom-left before:scale-x-0 before:bg-gradient-to-r before:from-gray-200/25 before:opacity-25 before:transition-all hover:before:origin-top-left hover:before:scale-x-100 hover:before:opacity-100">
+                        class="overflow-hidden h-40 bg-white grid place-items-center">
                         @php
                         $mime=explode('/', $file->mime_type);
                         $extension = $file->ekstensi_file;
@@ -120,7 +111,7 @@
                         <img data-src="{{ asset('storage/' . $file->generate_filename) }}" alt="{{ $file->judul_file }}"
                             class="object-contain h-[inherit]">
                         @else
-                        <x-partial.asset.svg :ext="$extension" />
+                        <x-asset.svg :ext="$extension" />
                         @endif
                     </a>
                 </div>

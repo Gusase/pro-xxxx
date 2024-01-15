@@ -9,7 +9,7 @@
         <span class="text-3xl text-center block w-full mb-px">+</span>
     </x-partial.create-file>
     <div data-tooltip="nf" data-tooltip-placement="right" tabindex="-1"
-        class="absolute z-30 whitespace-normal opacity-0 break-words inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+        class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
         <span class="text-xs">New file</span>
     </div>
 
@@ -25,7 +25,7 @@
                 </svg>
             </x-partial.tertiary-button>
             <div data-tooltip="fs" data-tooltip-placement="right" tabindex="-1"
-                class="absolute z-30 whitespace-normal opacity-0 break-words inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
                 <span class="text-xs">My Files</span>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 </svg>
             </x-partial.tertiary-button>
             <div data-tooltip="pf" data-tooltip-placement="right" tabindex="-1"
-                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg bg-blainline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
                 <span class="text-xs">Public Files</span>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 </svg>
             </x-partial.tertiary-button>
             <div data-tooltip="tr" data-tooltip-placement="right" tabindex="-1"
-                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg bg-blainline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
                 <span class="text-xs">Trash</span>
             </div>
         </div> --}}
@@ -70,7 +70,7 @@
                 </svg>
             </x-partial.tertiary-button>
             <div data-tooltip="du" data-tooltip-placement="right" tabindex="-1"
-                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg bg-blainline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
                 <span class="text-xs">User Data</span>
             </div>
         </div>
@@ -88,7 +88,7 @@
                 </svg>
             </x-partial.tertiary-button>
             <div data-tooltip="acc" data-tooltip-placement="right" tabindex="-1"
-                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg bg-blainline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
                 <span class="text-xs">Settings</span>
             </div>
         </div>
@@ -105,7 +105,7 @@
                 </svg>
             </button>
             <div data-tooltip="lg" data-tooltip-placement="right" tabindex="-1"
-                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg bg-blainline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm">
+                class="absolute z-30 whitespace-normal opacity-0 break-words rounded-lg inline-block px-3 py-2 text-sm font-normal text-gray-900 bg-white border border-gray-200  shadow-sm">
                 <span class="text-xs">Log Out</span>
             </div>
         </div>

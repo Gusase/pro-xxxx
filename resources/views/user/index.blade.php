@@ -138,7 +138,7 @@
     <div id="dropdown" class="absolute hidden z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-52">
         <ul class="py-2 text-sm text-gray-700">
             <li>
-                <a href="" class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="edit">
+                <a href="" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="edit">
                     <svg class="h-4 w-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor" viewBox="0 0 20 18">
                         <path
@@ -152,7 +152,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="download">
+                <a href="" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="download">
                     <svg class="mr-1 h-3 w-3 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 16 18">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -162,7 +162,7 @@
                 </a>
             </li>
             <li>
-                <button class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full" id="rcCopy">
+                <button class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full" id="rcCopy">
                     <svg class="mr-1 h-3 w-3 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 19 19">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -172,7 +172,7 @@
                 </button>
             </li>
             <li>
-                <button id="bSearch" class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full"
+                <button id="bSearch" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full"
                     data-id_file="" data-user="{{ Auth::user()->username }}" data-modal-toggle="modalShareAnotherUser">
                     <svg class="mr-0.5 h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
