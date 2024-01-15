@@ -6,12 +6,7 @@
 
     <x-partial.flash class="!my-2 shadow-md" :flash="session()->all()" />
 
-    {{-- @section('salam')
-    <div class="py-3">
-        <h3 class="text-3xl font-semibold">{{ $salam . ', ' . Auth::user()->fullname }}</h3>
-    </div>
-    @endsection --}}
-    <div class="grid @if($files->isEmpty()) place-items-center h-full w-full md:grid-cols-1 grid-cols-1 @else md:grid-cols-5 grid-cols-2 grid-cols-2 @endif  gap-y-[20px] gap-x-[16px]  min-[2368px]:grid-cols-6 p-5">
+    <div class="@if (count($files)) lg:grid-cols-4 2xl:grid-cols-5 min-[2368px]:grid-cols-6  sm:grid-cols-2 md:grid-cols-3 @else sm:grid-cols-1 md:grid-cols-1 place-items-center 2xl:grid-cols-1 min-[2368px]:grid-cols-1 lg:grid-cols-1 h-[90%] @endif grid grid-cols-1 gap-y-[20px] gap-x-[16px] p-3 sm:p-5">
     @if ($files->isEmpty())
         <h1 class="text-center mx-auto text-gray-400 font-semibold text-4xl">No files yet</h1>
     @endif
@@ -381,13 +376,13 @@
     <div id="allNotifications" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed pt-3 top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md h-full">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 h-full overflow-y-auto">
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            <div class="relative bg-white rounded-lg shadow h-full overflow-y-auto">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-lg font-semibold text-gray-900">
                         All Message
                     </h3>
                     <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center"
                         data-modal-toggle="allNotifications">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -401,19 +396,19 @@
                     <ul class="space-y-4">
                         @foreach ($pesan as $p)
                         <li>
-                            <a href="{{ route('file.share.detail', [$p->user->username, $p->id_file]) }}"
+                            <a href="{{ route('file.share.detail', [auth()->user()->username, $p->id_file]) }}"
                                 class="inline-flex items-center justify-between w-full p-3 px-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer  hover:text-gray-900 hover:bg-gray-100">
                                 <img class="w-10 aspect-square rounded-full object-cover"
-                                    src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
+                                    src="{{ auth()->user()->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . auth()->user()->pp) }}"
                                     alt="{{ $p->id_pengirim }}">
                                 <div class="block">
                                     <div title="{{ $p->created_at }}" class="text-xs text-gray-700">
                                         {{ $p->created_at->format('F d, Y h:iA') }}
                                     </div>
-                                    <span class="text-base"><b>{{ $p->user->username }}</b> sent you a file! View
+                                    <span class="text-base"><b>{{ auth()->user()->username }}</b> sent you a file! View
                                         file.</span>
                                 </div>
-                                <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500 dark:text-gray-400"
+                                <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

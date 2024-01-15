@@ -35,7 +35,7 @@
             </div>
           </div>
           <p class="text-sm 2xl:text-base font-normal my-2.5 text-gray-900 sm:px-2">{{ $p->pesan }}</p>
-          <a href="{{ route('file.share.detail',[$p->user->username ,$p->id_file]) }}"
+          <a href="{{ route('download.redirect', [$p->id_file, $p->user->username]) }}"
             title="Filename: {{ $p->file->original_filename }}"
             class="flex overflow-hidden items-start relative hover:bg-gray-200/30 before:rounded-xl ring-1 group-hover:ring-gray-900/30 ring-gray-900/10 rounded-xl p-2 duration-150 transition-shadow hover:!ring-gray-900">
             <div class="me-2">
@@ -59,3 +59,6 @@
   </x-section-center>
 
 </x-user>
+
+
+{{-- {{ route('download.redirect', [$p->id_file, $p->user->username]) }} --}}

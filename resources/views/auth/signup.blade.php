@@ -6,7 +6,7 @@
     <section class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:my-7 2xl:my-0 lg:py-0">
         <div class="w-96">
             <div>
-                <h2 class="mb-8 text-center text-2xl font-bold leading-9 font-semibold tracking-tight text-[#004269]">
+                <h2 class="mb-8 text-center text-2xl font-bold leading-9 font-semibold tracking-tight text-gray-900">
                     User Registration
                 </h2>
             </div>

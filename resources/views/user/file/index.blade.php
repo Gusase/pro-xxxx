@@ -10,7 +10,7 @@
     <div
         class="@if (count($files)) lg:grid-cols-4 2xl:grid-cols-5 min-[2368px]:grid-cols-6  sm:grid-cols-2 md:grid-cols-3 @else sm:grid-cols-1 md:grid-cols-1 place-items-center 2xl:grid-cols-1 min-[2368px]:grid-cols-1 lg:grid-cols-1 h-[90%] @endif grid grid-cols-1 gap-y-[20px] gap-x-[16px] p-3 sm:p-5">
         @unless (count($files))
-        <h1 class="text-center mx-auto text-gray-400 font-semibold text-4xl">No files yet</h1>
+            <h1 class="text-center mx-auto text-gray-400 font-semibold text-4xl">No files yet</h1>
         @endunless
         @foreach ($files as $file)
         @php
@@ -99,37 +99,37 @@
                 </div>
             </div>
 
-            <div title="Filename: {{ $file->original_filename }}">
-                <div class="mt-px cursor-default">
-                    <a href="{{ route('file.detail', ['id_file' => $file->id_file,'username' => $file->user->username]) }}"
-                        class="overflow-hidden h-40 bg-white grid place-items-center">
-                        @php
-                        $mime=explode('/', $file->mime_type);
-                        $extension = $file->ekstensi_file;
-                        @endphp
-                        @if (explode('/', $file['mime_type'])[0] == 'image')
-                        <img data-src="{{ asset('storage/' . $file->generate_filename) }}" alt="{{ $file->judul_file }}"
-                            class="object-contain h-[inherit]">
-                        @else
-                        <x-asset.svg :ext="$extension" />
-                        @endif
-                    </a>
-                </div>
+                {{-- <div title="Filename: {{ $file->original_filename }}">
+                    <div class="mt-px cursor-default">
+                        <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->user->username]) }}"
+                            class="overflow-hidden h-40 bg-white grid place-items-center relative isolate before:absolute before:inset-0 before:z-10 before:block before:origin-bottom-left before:scale-x-0 before:bg-gradient-to-r before:from-gray-200/25 before:opacity-25 before:transition-all hover:before:origin-top-left hover:before:scale-x-100 hover:before:opacity-100">
+                            @php
+                                $mime = explode('/', $file->mime_type);
+                                $extension = $file->ekstensi_file;
+                            @endphp
+                            @if (explode('/', $file['mime_type'])[0] == 'image')
+                                <img data-src="{{ asset('storage/' . $file->generate_filename) }}"
+                                    alt="{{ $file->judul_file }}" class="object-contain h-[inherit]">
+                            @else
+                                <x-partial.asset.svg :ext="$extension" />
+                            @endif
+                        </a>
+                    </div>
 
-                <div class="pt-1 px-3 space-y-px">
-                    <a href="{{ route('file.detail', ['id_file' => $file->id_file,'username' => $file->user->username]) }}"
-                        class="line-clamp-2 font-normal text-gray-900 isolate relative font-mona no-underline after:absolute after:right-[.05em] after:bottom-0 after:left-[.05em] after:block after:-z-[1] after:h-px after:bg-gray-400 after:transition-transform after:scale-x-100 after:origin-bottom-left hover:after:scale-x-0 hover:after:origin-bottom-right before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0 w-fit"
-                        title="{{ $file->judul_file }}">{{ $file->judul_file }}</a>
-                    <p class="-mt-2 text-sm w-[calc(95%_+_1rem)] truncate text-gray-600/70 font-inter font-normal">
-                        {{ $file->original_filename }}
-                    </p>
-                </div>
+                    <div class="pt-1 px-3 space-y-px">
+                        <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->user->username]) }}"
+                            class="line-clamp-2 font-normal text-gray-900 isolate relative font-mona no-underline after:absolute after:right-[.05em] after:bottom-0 after:left-[.05em] after:block after:-z-[1] after:h-px after:bg-gray-400 after:transition-transform after:scale-x-100 after:origin-bottom-left hover:after:scale-x-0 hover:after:origin-bottom-right before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0 w-fit"
+                            title="{{ $file->judul_file }}">{{ $file->judul_file }}</a>
+                        <p class="-mt-2 text-sm w-[calc(95%_+_1rem)] truncate text-gray-600/70 font-inter font-normal">
+                            {{ $file->original_filename }}
+                        </p>
+                    </div>
+                </div> --}}
             </div>
-        </div>
         @endforeach
     </div>
 
     @push('script')
-    <script src="{{ asset('js/buffer.js') }}"></script>
+        <script src="{{ asset('js/buffer.js') }}"></script>
     @endpush
 </x-user>

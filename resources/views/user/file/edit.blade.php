@@ -1,78 +1,78 @@
 @push('style')
-<style>
-    .thumbnailCard {
-        background: #ddd;
-        min-height: 200px;
-    }
+    <style>
+        .thumbnailCard {
+            background: #ddd;
+            min-height: 200px;
+        }
 
-    .dropArea {
-        max-width: 100%;
-        height: 200px;
-        padding: 25px;
-        display: grid;
-        background-color: #f7f9fe;
-        place-items: center;
-        text-align: center;
-        font-family: sans-serif;
-        font-weight: 500;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: #ccc;
-        border: 4px dashed #000;
-        border-radius: 10px;
-    }
+        .dropArea {
+            max-width: 100%;
+            height: 200px;
+            padding: 25px;
+            display: grid;
+            background-color: #f7f9fe;
+            place-items: center;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: 500;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #ccc;
+            border: 4px dashed #000;
+            border-radius: 10px;
+        }
 
-    .dropArea.error {
-        border: 2px solid red
-    }
+        .dropArea.error {
+            border: 2px solid red
+        }
 
-    .dropArea-over {
-        border-style: solid;
-    }
+        .dropArea-over {
+            border-style: solid;
+        }
 
-    .dropFile {
-        display: none;
-    }
+        .dropFile {
+            display: none;
+        }
 
-    .dropArea-thumb {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #ccc;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-    }
+        .dropArea-thumb {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ccc;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
 
-    .dropArea-thumb::after {
-        content: attr(data-label);
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 5px 0;
-        color: white;
-        background: rgba(0, 0, 0, .75);
-        font-size: .9rem;
-        text-align: center;
-    }
+        .dropArea-thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: white;
+            background: rgba(0, 0, 0, .75);
+            font-size: .9rem;
+            text-align: center;
+        }
 
-    .thumb-card {
-        display: grid;
-        place-items: center;
-        background: #ddd;
-        height: 200px;
-    }
+        .thumb-card {
+            display: grid;
+            place-items: center;
+            background: #ddd;
+            height: 200px;
+        }
 
-    .thumb-card img {
-        width: 100%;
-        max-height: 200px;
-        object-fit: cover;
-        object-position: top;
-    }
-</style>
+        .thumb-card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            object-position: top;
+        }
+    </style>
 @endpush
 <x-user :$jumlahPesan :$pesan :files="$file" :$pesanGrup>
 
@@ -85,7 +85,8 @@
             <h2 class="text-2xl font-normal font-mona leading-7 text-gray-900">Editing file</h2>
         </x-section-heading>
 
-        <form method="post" action="{{ route('file.update',$file->id_file) }}" enctype="multipart/form-data" id="form">
+        <form method="post" action="{{ route('file.update', $file->id_file) }}" enctype="multipart/form-data"
+            id="form">
             @method('put')
             @csrf
             <div class="dropArea @error('files') error animate-shake @enderror mb-4">
@@ -93,10 +94,10 @@
                     <p class="mb-1 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and
                         drop the file</p>
                     @if ($file)
-                    <p class="text-xs text-gray-500 italic">{{ $file->original_filename }}</p>
+                        <p class="text-xs text-gray-500 italic">{{ $file->original_filename }}</p>
                     @endif
                     @error('files')
-                    <p class="text-xs text-red-500">{{ $message }}</p>
+                        <p class="text-xs text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <input type="file" name="files" id="files" class="dropFile">
@@ -115,7 +116,7 @@
                 <ul class="mb-4 gap-y-2 sm:gap-y-0 grid grid-cols-1 gap-x-2 sm:grid-cols-2">
                     <li>
                         <input type="radio" id="status-2" name="status" value="public" class="peer hidden"
-                            @if($file->status == 'public') checked @endif>
+                            @if ($file->status == 'public') checked @endif>
                         <label for="status-2"
                             class="@error('status') animate-shake @enderror inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-3 text-gray-900 hover:bg-gray-100 hover:text-gray-900 peer-checked:border-gray-600 peer-checked:text-gray-600">
                             <div class="block">
@@ -135,7 +136,7 @@
                     </li>
                     <li>
                         <input type="radio" id="status-1" name="status" value="private" class="peer hidden"
-                            @if($file->status == 'private') checked @endif>
+                            @if ($file->status == 'private') checked @endif>
                         <label for="status-1"
                             class="@error('status') animate-shake @enderror inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-3 text-gray-900 hover:bg-gray-100 hover:text-gray-900 peer-checked:border-gray-600 peer-checked:text-gray-600">
                             <div class="block">
@@ -153,7 +154,20 @@
                     </li>
                 </ul>
             </div>
-            <x-partial.textarea name="deskripsi">{{ $file->deskripsi }}</x-partial.textarea>
+            <div class="mb-4">
+                <label for="floatingTextarea2"
+                    class="mb-2 block text-sm font-medium text-gray-900 capitalize">Deskripsi</label>
+                <textarea
+                    class="block w-full rounded-lg border outline-none border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-gray-500 focus:ring-2 ring-inset focus:ring-gray-500 @error($file->deskripsi) animate-shake ring-gray-600 ring-2 @enderror"
+                    id="floatingTextarea2" style="height: 100px" name="deskripsi" placeholder="Tambahkan deskripsi disini">{{ old('deskripsi', $file->deskripsi) }}</textarea>
+                @error('deskripsi')
+                    <span class="text-gray-500 text-xs" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+
             <div class="mt-6 flex items-center justify-start gap-x-4">
                 <div class="!w-max -mt-6">
                     <x-partial.primary-button onclick="process('save')">
@@ -168,7 +182,7 @@
     </div>
 
     @push('script')
-    <script src="{{ asset('js/form.js') }}"></script>
-    <script src="{{ asset('js/filedrop.js') }}"></script>
+        <script src="{{ asset('js/form.js') }}"></script>
+        <script src="{{ asset('js/filedrop.js') }}"></script>
     @endpush
 </x-user>

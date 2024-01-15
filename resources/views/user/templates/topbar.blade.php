@@ -68,7 +68,7 @@
                         <div class="mr-3">
                             <div class="overflow-hidden">
                                 <img class="w-10 aspect-square rounded-full object-cover"
-                                    src="{{ $p->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $p->user->pp) }}"
+                                    src="{{ auth()->user()->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . auth()->user()->pp) }}"
                                     alt="{{ $p->id_pengirim }}">
                             </div>
                         </div>
@@ -76,10 +76,10 @@
                             <div title="{{ $p->created_at }}" class="text-xs text-gray-700">
                                 {{ $p->created_at->format('F d, Y h:i A') }}
                             </div>
-                            <span class="text-[0.85rem]"><a href="{{ route('profile', $p->user->username) }}"
-                                    class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{ $p->user->username }}</a>
+                            <span class="text-[0.85rem]"><a href="{{ route('profile', auth()->user()->username) }}"
+                                    class="isolate text-[0.85rem] truncate w-[85%] md:w-max font-normal relative no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">{{ auth()->user()->username }}</a>
                                 sent you a file! <a
-                                    href="{{ route('file.share.detail', [$p->user->username, $p->id_file]) }}"
+                                    href="{{ route('download.redirect', [$p->id_file, auth()->user()->username]) }}"
                                     class="text-gray-800 font-medium hover:underline">View file.</a></span>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
 
 
 <div id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 2xl:w-[339px] h-screen overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-600"
+    class="fixed top-0 left-0 z-40 w-64 2xl:w-[339px] h-screen overflow-y-auto transition-transform -translate-x-full bg-white"
     tabindex="-1">
     <div class="h-full px-4 py-3 overflow-y-auto bg-gray-50 rounded-e-xl">
         <div class="flex items-center justify-between gap-x-2">
@@ -252,15 +252,6 @@
                     <span style="ml-1">Public Files</span>
                 </x-partial.tertiary-button>
 
-                <x-partial.tertiary-button href="{{ route('file.trashed') }}" :path="request()->routeIs('file.trashed')" tabindex="-1">
-                    <svg class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 18 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                    </svg>
-                    <span style="ml-1">Trash</span>
-                </x-partial.tertiary-button>
-
                 @if (Auth::user()->status == 2)
                     <x-partial.tertiary-button href="/a/users" :path="request()->is('a/*')" tabindex="-1">
                         <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -297,18 +288,3 @@
         </div>
     </div>
 </div>
-
-{{-- @push('script')
-<script>
-    /**
-         * Slash key listener ,to focus inputs
-         */
-        document.addEventListener("keydown", (event) => {
-        if (event.key === "/" && event.code === "Slash") {
-            event.preventDefault();
-            // var globalForm = document.getElementById("global-search");
-            document.getElementById("global-search").focus();
-        }
-        });
-</script>
-@endpush --}}

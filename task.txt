@@ -1,5 +1,1 @@
-1. Ketika user mendapat kiriman file dan mengklik lihat file, website harus redirect ke detail file sambil download filenya.
-2. Edit img profil agar bisa menambahkan 'bg-top'.
-3. User ketika upload file yang berekstensi PDF, DOCX, PPT tidak bisa terupload(belum pasti disemua pc).
-4. Pada publik file tentukan apakah mau pakai share link atau tidak.
-5. 
+1. User ketika upload file yang berekstensi PDF, DOCX, PPT tidak bisa terupload(belum pasti disemua pc).
