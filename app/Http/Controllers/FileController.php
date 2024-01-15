@@ -23,15 +23,20 @@ class FileController extends Controller
         $data['pesan'] = $pesan;
         $data['pesanGrup'] = $groupedPesan->all();
 
-        $files = File::with('user')->latest()->where('status', 'public');
+        // $files = File::with('user')->latest()->where('status', 'public');
 
-        if (request('search')) {
-            $files->where('judul_file', 'like', '%' . request('search') . '%');
-        }
+        // if (request('search')) {
+        //     $files->where('judul_file', 'like', '%' . request('search') . '%');
+        // }
 
 
-        $data['files'] = $files->get();
+        // $data['files'] = $files->get();
         $data['title'] = 'Discover';
+        $files = DB::table('users')
+        ->join('files', 'users.id_user', '=', 'files.id_user')
+        ->select('users.*', 'files.*')
+        ->get();
+        $data['files'] = $files;
         return view('user.file.index', $data);
     }
 
