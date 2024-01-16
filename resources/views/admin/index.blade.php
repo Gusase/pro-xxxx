@@ -9,7 +9,7 @@
     <ul role="list"
         class="grid w-full grid-cols-2 gap-x-6 gap-y-3 text-sm sm:grid-cols-3 md:gap-y-10 lg:grid-cols-4 my-4">
         <li
-            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
+            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
                     style="font-variation-settings: &quot;wdth&quot; 125;">{{ $countUsers }}
@@ -18,7 +18,7 @@
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Total User</h3>
         </li>
         <li
-            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
+            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
                     style="font-variation-settings: &quot;wdth&quot; 125;">{{ count($files) }}
@@ -27,7 +27,7 @@
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Total file</h3>
         </li>
         <li
-            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
+            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
                     style="font-variation-settings: &quot;wdth&quot; 125;">{{ $verified }}
@@ -36,7 +36,7 @@
             <h3 class="font-mona font-normal text-sm sm:text-base text-gray-900 mt-2">Verified users</h3>
         </li>
         <li
-            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l border-gray-600 flex flex-col items-start gap-x-1.5">
+            class="rounded-2xl md:border border-gray-200 p-4 sm:p-6 border-l flex flex-col items-start gap-x-1.5">
             <div class="w-8 h-8">
                 <h2 class="text-2xl sm:text-3xl font-semibold font-mona"
                     style="font-variation-settings: &quot;wdth&quot; 125;">{{ $unverified }}
@@ -161,7 +161,7 @@
                     <form action="" method="POST" class="inline-block mr-1" id="form">
                         @csrf
                         <div class="!w-max">
-                            <x-partial.primary-button onclick="process('verify')"
+                            <x-partial.primary-button onclick="process(event)"
                                 class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Verify
                             </x-partial.primary-button>
@@ -202,7 +202,7 @@
                         @method('DELETE')
                         @csrf
                         <div class="!w-max">
-                            <x-partial.primary-button onclick="process('deleteUser')" data-delete=""
+                            <x-partial.primary-button onclick="process(event)"
                                 class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Delete
                             </x-partial.primary-button>

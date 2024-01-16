@@ -55,16 +55,16 @@
                     <div class="flex justify-between">
                         <div class="flex items-center gap-1 flex-1 min-w-0">
                             <img alt=""
-                                src="{{ $file->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $file->pp) }}"
+                                src="{{ $file->user->pp === 'img/defaultProfile.svg' ? asset('img/defaultProfile.svg') : asset('storage/' . $file->user->pp) }}"
                                 class="relative inline-block h-9 w-9 aspect-square !rounded-full  border-2 border-white object-cover object-center hover:z-10" />
                             <div class="w-[90%] sm:min-w-[inherit] lg:w-full">
-                                <a href="{{ route('profile', $file->username) }}"
+                                <a href="{{ route('profile', ['user' => $file->user->username]) }}"
                                     class="break-all text-sm antialiased font-medium tracking-normal text-inherit line-clamp-1 w-fit isolate relative font-mona no-underline before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0">
-                                    {{ $file->fullname }}</a>
-                                {{-- <p class="block font-poppins text-xs antialiased font-light leading-normal text-gray-500 -mt-px"
+                                    {{ $file->user->fullname }}</a>
+                                <p class="block font-poppins text-xs antialiased font-light leading-normal text-gray-500 -mt-px"
                                     title="{{ $file->created_at }}">
                                     {{ $file->created_at->diffForHumans() == '1 month ago' ? $file->created_at->format('d M Y') : $file->created_at->diffForHumans() }}
-                                </p> --}}
+                                </p>
                             </div>
                         </div>
                         <button id="dropdw" data-dropdown-toggle="file-#{{ $file->id_file }}"
@@ -82,8 +82,8 @@
 
                 <div title="Filename: {{ $file->original_filename }}">
                     <div class="mt-px cursor-default">
-                        <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->username]) }}"
-                            class="overflow-hidden h-40 bg-white grid place-items-center relative isolate before:absolute before:inset-0 before:z-10 before:block before:origin-bottom-left before:scale-x-0 before:bg-gradient-to-r before:from-gray-200/25 before:opacity-25 before:transition-all hover:before:origin-top-left hover:before:scale-x-100 hover:before:opacity-100">
+                        <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->user->username]) }}"
+                            class="overflow-hidden h-40 bg-white grid place-items-center relative">
                             @php
                                 $mime = explode('/', $file->mime_type);
                                 $extension = $file->ekstensi_file;
@@ -92,13 +92,13 @@
                                 <img data-src="{{ asset('storage/' . $file->generate_filename) }}"
                                     alt="{{ $file->judul_file }}" class="object-contain h-[inherit]">
                             @else
-                                <x-partial.asset.svg :ext="$extension" />
+                                <x-asset.svg :ext="$extension" />
                             @endif
                         </a>
                     </div>
 
                     <div class="pt-1 px-3 space-y-px">
-                        <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->username]) }}"
+                        <a href="{{ route('file.detail', ['id_file' => $file->id_file, 'username' => $file->user->username]) }}"
                             class="line-clamp-2 font-normal text-gray-900 isolate relative font-mona no-underline after:absolute after:right-[.05em] after:bottom-0 after:left-[.05em] after:block after:-z-[1] after:h-px after:bg-gray-400 after:transition-transform after:scale-x-100 after:origin-bottom-left hover:after:scale-x-0 hover:after:origin-bottom-right before:absolute before:inset-0 before:-z-[1] before:block before:bg-gray-300/75 before:transition-transform before:scale-x-0 before:origin-bottom-right hover:before:scale-x-100 hover:before:origin-bottom-left hover:text-black duration-150 p-0.5 pb-0 w-fit"
                             title="{{ $file->judul_file }}">{{ $file->judul_file }}</a>
                         <p class="-mt-2 text-sm w-[calc(95%_+_1rem)] truncate text-gray-600/70 font-inter font-normal">

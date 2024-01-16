@@ -109,7 +109,7 @@
             </div>
 
             <a href="{{ route('file.detail', ['username' => Auth::user()->username, 'id_file' => $file->id_file]) }}"
-                class="overflow-hidden h-40 mt-px cursor-pointer bg-white grid place-items-center relative isolate before:absolute before:inset-0 before:z-10 before:block before:origin-bottom-left before:scale-x-0 before:bg-gradient-to-r before:from-gray-200/25 before:opacity-25 before:transition-all hover:before:origin-top-left hover:before:scale-x-100 hover:before:opacity-100">
+                class="overflow-hidden h-40 mt-px cursor-pointer bg-white grid place-items-center relative">
                 @php
                 $mime = explode('/', $file->mime_type);
                 $extension = $file->ekstensi_file;
@@ -118,7 +118,7 @@
                 <img data-src="{{ asset('storage/' . $file->generate_filename) }}" alt="{{ $file->judul_file }}"
                     class="object-contain h-[inherit]">
                 @else
-                <x-partial.asset.svg :ext="$extension" />
+                <x-asset.svg :ext="$extension" />
                 @endif
             </a>
         </div>
@@ -133,7 +133,7 @@
     <div id="dropdown" class="absolute hidden z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-52">
         <ul class="py-2 text-sm text-gray-700">
             <li>
-                <a href="" class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="edit">
+                <a href="" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="edit">
                     <svg class="h-4 w-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor" viewBox="0 0 20 18">
                         <path
@@ -147,7 +147,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="download">
+                <a href="" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3" id="download">
                     <svg class="mr-1 h-3 w-3 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 16 18">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -157,7 +157,7 @@
                 </a>
             </li>
             <li>
-                <button class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full" id="rcCopy">
+                <button class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full" id="rcCopy">
                     <svg class="mr-1 h-3 w-3 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 19 19">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -167,7 +167,7 @@
                 </button>
             </li>
             <li>
-                <button id="bSearch" class="block px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full"
+                <button id="bSearch" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full"
                     data-id_file="" data-user="{{ Auth::user()->username }}" data-modal-toggle="modalShareAnotherUser">
                     <svg class="mr-0.5 h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
