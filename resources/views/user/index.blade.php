@@ -2,15 +2,13 @@
 
     <x-slot:title>
         Dashboard - {{ config('app.name') }}
-    </x-slot>
+    </x-slot:title>
 
     <x-partial.flash class="!my-2 shadow-md" :flash="session()->all()" />
 
-    <div class="@if (count($files)) lg:grid-cols-4 2xl:grid-cols-5 min-[2368px]:grid-cols-6  sm:grid-cols-2 md:grid-cols-3 @else sm:grid-cols-1 md:grid-cols-1 place-items-center 2xl:grid-cols-1 min-[2368px]:grid-cols-1 lg:grid-cols-1 h-[90%] @endif grid grid-cols-1 gap-y-[20px] gap-x-[16px] p-3 sm:p-5">
-    @if ($files->isEmpty())
-        <h1 class="text-center mx-auto text-gray-400 font-semibold text-4xl">No files yet</h1>
-    @endif
-        @foreach ($files as $file)
+    <div
+        class="@if (count($files)) lg:grid-cols-4 2xl:grid-cols-5 min-[2368px]:grid-cols-6  sm:grid-cols-2 md:grid-cols-3 @else sm:grid-cols-1 md:grid-cols-1 place-items-center 2xl:grid-cols-1 min-[2368px]:grid-cols-1 lg:grid-cols-1 h-[90%] @endif grid grid-cols-1 gap-y-[20px] gap-x-[16px] p-3 sm:p-5">
+        @forelse ($files as $file)
         @php
         $namaFile = explode('/', $file->generate_filename);
         @endphp
@@ -122,7 +120,9 @@
                 @endif
             </a>
         </div>
-        @endforeach
+        @empty
+        <h1 class="text-center mx-auto text-gray-400 font-semibold md:text-2xl 2xl:text-4xl">No files yet</h1>
+        @endforelse
     </div>
 
 
@@ -167,8 +167,8 @@
                 </button>
             </li>
             <li>
-                <button id="bSearch" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full"
-                    data-id_file="" data-user="{{ Auth::user()->username }}" data-modal-toggle="modalShareAnotherUser">
+                <button id="bSearch" class="px-4 py-2 hover:bg-gray-100 flex items-center gap-3 w-full" data-id_file=""
+                    data-user="{{ Auth::user()->username }}" data-modal-toggle="modalShareAnotherUser">
                     <svg class="mr-0.5 h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -356,7 +356,7 @@
                     <form action="" id="formDeleteFile" class="inline" method="post">
                         @method('delete')
                         @csrf
-                        <button data-modal-hide="modalDeleteFile" type="submit"
+                        <button type="submit" onclick="process(event)"
                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">
                             Delete
                         </button>
@@ -408,9 +408,8 @@
                                     <span class="text-base"><b>{{ $p->user->username }}</b> sent you a file! View
                                         file.</span>
                                 </div>
-                                <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 14 10">
+                                <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                                 </svg>

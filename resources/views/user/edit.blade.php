@@ -44,6 +44,8 @@
 
                                 <x-partial.form.input id="password" type="password" name="password"
                                     :error="$errors->get('password')" />
+                                
+                                <p class="text-sm text-gray-600 mt-1.5">Leave blank if you do not provide a new password</p>
                             </div>
 
                         </div>
