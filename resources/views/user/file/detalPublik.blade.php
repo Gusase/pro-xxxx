@@ -3,7 +3,6 @@
     <x-slot name="title">
         {{ $file->judul_file . " ($file->original_filename)"}}
     </x-slot>
-    <!-- Page Heading -->
 
     <x-section-center>
         <x-section-heading>
@@ -23,7 +22,7 @@
                 class="object-contain h-full mx-auto">
             @else
             <div class="w-80 h-80 grid place-items-center mx-auto">
-                <x-partial.asset.svg :ext="$extension" />
+                <x-asset.svg :ext="$extension" />
             </div>
             @endif
             <div class="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl">
@@ -49,7 +48,7 @@
                 </div>
                 @if(!is_null($file->pesan))
                 <div>
-                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Pesan</span>
+                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Message</span>
                     <p class="tracking-tight text-base font-medium text-slate-900 mr-px">
                         {{ $file->pesan }}
                     </p>
@@ -57,21 +56,35 @@
                 @endif
 
                 <div>
-                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Nama File</span>
+                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">File Name</span>
                     <p class="tracking-tight text-base font-medium text-slate-900 mr-px break-all">
                         {{ $file->original_filename}}
                     </p>
                 </div>
 
                 <div>
-                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Ukuran</span>
+                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Size</span>
                     <p class="tracking-tight text-base font-medium text-slate-900 mr-px">
                         {{ $file->file_size }}
                     </p>
                 </div>
 
                 <div>
-                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Deskripsi</span>
+                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Updated At</span>
+                    <p class="tracking-tight text-base font-medium text-slate-900 mr-px">
+                        {{ Carbon\Carbon::parse($file->updated_at)->format('h.m d M Y') }}
+                    </p>
+                </div>
+
+                <div>
+                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Created At</span>
+                    <p class="tracking-tight text-base font-medium text-slate-900 mr-px">
+                        {{ Carbon\Carbon::parse($file->created_at)->format('h.m d M Y') }}
+                    </p>
+                </div>
+
+                <div>
+                    <span class="font-medium text-sm text-slate-700 font-mono mb-3">Description</span>
                     <p class="tracking-tight text-base font-medium text-slate-900 mr-px">
                         @if(!$file->deskripsi) - @endif
                         {{ $file->deskripsi }}
@@ -80,9 +93,8 @@
             </div>
             <div class="text-center mt-4">
                 <div class="mt-3">
-                    <small><a href="{{ url()->previous() }}">&laquo; Kembali</a></small>
+                    <small><a href="{{ url()->previous() }}">&laquo; Back</a></small>
                 </div>
-                {{-- <small style="">{{ $file->created_at }}</small> --}}
             </div>
             </tr>
         </div>

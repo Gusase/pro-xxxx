@@ -23,15 +23,9 @@ class FileController extends Controller
 		$data['pesan'] = $pesan;
 		$data['pesanGrup'] = $groupedPesan->all();
 
-		// $files = File::with('user')->latest()->where('status', 'public');
+		$files = File::with('user')->latest()->where('status', 'public');
 
-
-
-		// $data['files'] = $files->get();
 		$data['title'] = 'Discover';
-		$files = DB::table('users')
-			->join('files', 'users.id_user', '=', 'files.id_user')
-			->select('users.*', 'files.*');
 
 		if (request('search')) {
 			$files->where('judul_file', 'like', '%' . request('search') . '%')->orWhere('original_filename', 'like', '%' . request('search') . '%');
@@ -187,7 +181,8 @@ class FileController extends Controller
 			'ekstensi_file' => $ekstensi,
 			'mime_type' => $mime,
 			'file_size' => $size,
-			'deskripsi' => $request->input('deskripsi')
+			'deskripsi' => $request->input('deskripsi'),
+			'updated_at' => now()->format('Y-m-d H:i:s')
 		];
 
 		$file->update($validatedData);
@@ -331,7 +326,7 @@ class FileController extends Controller
 			->where('p.id_penerima', '=', $this->getUserId())
 			->where('p.id_pengirim', '=', fn (\Illuminate\Database\Query\Builder $query) =>
 			$query->select('id_user')->from('users')->where('username', $username)->get())
-			->first(['p.pesan', 'f.original_filename', 'f.generate_filename', 'f.judul_file', 'f.status', 'f.mime_type', 'f.ekstensi_file', 'f.id_file', 'u.fullname', 'u.pp', 'f.file_size', 'f.deskripsi', 'f.created_at']);
+			->first(['p.pesan', 'f.original_filename', 'f.generate_filename', 'f.judul_file', 'f.status', 'f.mime_type', 'f.ekstensi_file', 'f.id_file', 'u.fullname', 'u.pp', 'f.file_size', 'f.deskripsi', 'f.created_at', 'f.updated_at']);
 
 		if (!$shareFile) {
 			return $this->fail('dashboard', "File not found");
