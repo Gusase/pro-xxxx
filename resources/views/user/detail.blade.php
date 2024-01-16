@@ -30,7 +30,7 @@
 
 <x-user :$title :$user :$jumlahPesan :$pesan>
 
-        <x-partial.flash class="!my-2 absolute min-w-[18rem] top-20 right-10 z-10 shadow-md" :flash="session()->all()" />
+        <x-partial.flash class="!my-2" :flash="session()->all()" />
 
     <section class="bg-[#191616] isolate relative min-[2368px]:px-12 py-9 -mx-1 sm:-mx-4 no-scrollbar">
         <div class="flex items-center flex-col md:flex-row header-img justify-between ">

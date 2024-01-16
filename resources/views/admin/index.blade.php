@@ -81,10 +81,25 @@
                         </th>
                     </tr>
                 @endunless
+                @php
+                    $count = 1;
+										$page;
+                    if (request('page') === null || request('page') === 1) {
+                        for ($c = 0; $c <= 10; $c++) {
+                            $count++;
+                        }
+												$page = 1;
+                    } else if(request('page') != 1) {
+											$page = request('page');
+											for ($c = 11; $c <= 20; $c++) {
+                            $count++;
+                        }
+										}
+                @endphp
                 @foreach ($dataUsers as $index => $user)
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ $loop->iteration }}
+                            {{ $count++ }}
                         </th>
                         <td class="px-6 py-4">
                             {{ $user->fullname }}
